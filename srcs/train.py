@@ -1,6 +1,6 @@
 import argparse
 from load_data import load_data
-
+from sklearn.model_selection import train_test_split
 
 def main():
     parser = argparse.ArgumentParser(description="EEG Data Parser")
@@ -16,6 +16,7 @@ def main():
     labels = raw[1]
     data = raw.loc[:, 2:]
 
+    
 
 
 
