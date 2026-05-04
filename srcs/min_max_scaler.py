@@ -8,7 +8,7 @@ class min_max_scaler(BaseEstimator, TransgormerMixin):
     def fit(self, X, Y):
         self.min = np.min(X, axis=0)
         self.max = np.max(X, axis=0)
-        self.y = np.column_stack((y == 'B', y == 'M')).astype(int)
+        self.y_one_hot = np.column_stack((y == 'B', y == 'M')).astype(int)
         return self
     
     def normalise(self, X):
