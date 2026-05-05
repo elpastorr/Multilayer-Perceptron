@@ -1,14 +1,15 @@
 import numpy as np
-from sklearn.base import BaseEstimator, TransgormerMixin
+from sklearn.base import BaseEstimator, TransformerMixin
 
-class min_max_scaler(BaseEstimator, TransgormerMixin):
+
+class min_max_scaler(BaseEstimator, TransformerMixin):
     def __init__(self):
         return
     
-    def fit(self, X, Y):
+    def set(self, X, Y):
         self.min = np.min(X, axis=0)
         self.max = np.max(X, axis=0)
-        self.y_one_hot = np.column_stack((y == 'B', y == 'M')).astype(int)
+        self.y_one_hot = np.column_stack((Y == 'B', Y == 'M')).astype(int)
         return self
     
     def normalise(self, X):
