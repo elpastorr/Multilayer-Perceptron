@@ -110,9 +110,8 @@ class MLP:
             layer.update(dW_hidden, db_hidden, learning_rate)
 
     def save_model(self, scaler, filename):
-        for layer in self.layers:
-            model = {"layers": [{"w": layer.weights, "b": layer.biases}],
-                     "scaler": {"min": scaler.min, "max": scaler.max}}
+        model = {"layers": [{"w": layer.weights, "b": layer.biases} for layer in self.layers],
+                 "scaler": {"min": scaler.min, "max": scaler.max}}
 
         np.save(filename, model)
         print("Model saved to", filename)
