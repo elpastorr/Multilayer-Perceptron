@@ -1,4 +1,5 @@
 import numpy as np
+import os
 from layer import DenseLayer
 
 
@@ -113,6 +114,8 @@ class MLP:
         model = {"layers": [{"w": layer.weights, "b": layer.biases} for layer in self.layers],
                  "scaler": {"min": scaler.min, "max": scaler.max}}
 
+        if not os.path.isdir("model"):
+            os.makedirs("model")
         np.save(filename, model)
         print("Model saved to", filename)
 
