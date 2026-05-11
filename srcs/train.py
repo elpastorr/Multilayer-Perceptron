@@ -44,7 +44,7 @@ def main():
 
     model = MLP(input_dim=30, hidden_dim=24, output_dim=2, batch_size=len(X_train_scaled))
 
-    history = model.train(X_train_scaled, Y_train_oh, X_val_scaled, Y_val_oh, epochs=5000, learning_rate=0.1)
+    history = model.train(X_train_scaled, Y_train_oh, X_val_scaled, Y_val_oh, epochs=1000, learning_rate=0.4)
 
     model.save_model(scaler, "./model/model.npy")
 

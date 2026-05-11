@@ -13,7 +13,7 @@ class MLP:
             DenseLayer(hidden_dim, output_dim)
         ]
 
-    def train(self, X_train, Y_train, X_val, Y_val, epochs=100, learning_rate=0.5, break_count=2, min_delta=0.0001):
+    def train(self, X_train, Y_train, X_val, Y_val, epochs, learning_rate, break_count=2, min_delta=0.0001):
         self.batch_size= X_train.shape[0]
         self.best_val_loss = 100
         history = {"loss_train": [], "loss_val": [], "acc_train": [], "acc_val": []}
