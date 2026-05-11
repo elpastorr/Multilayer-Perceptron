@@ -4,8 +4,12 @@ from load_data import load_data
 
 
 def main():
-    model_save = np.load("model/model.npy", allow_pickle=True).item()
-
+    try:
+        model_save = np.load("model/model.npy", allow_pickle=True).item()
+    except:
+        print("Error: Failed to load model/model.npy")
+        return
+    
     try:
         raw = load_data("data/test_data.csv")
     except:
