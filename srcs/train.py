@@ -9,8 +9,10 @@ from mlp import MLP
 
 
 def main():
-    parser = argparse.ArgumentParser(description="EEG Data Parser")
+    parser = argparse.ArgumentParser(description="Data Parser")
     parser.add_argument('--dataset', type=str, required=True)
+    parser.add_argument('--model', type=str, default="./model/model.npy")
+    parser.add_argument('--test_data', type=str, default="./data/test_data.csv")
 
     args = parser.parse_args()
     try:
@@ -28,8 +30,8 @@ def main():
 
     test_dataset = pd.concat([Y_test, X_test], axis=1)
 
-    test_dataset.to_csv("./data/test_data.csv", index=False, header=False)
-    print("Test dataset saved to data/test_data.csv")
+    test_dataset.to_csv(args.test_data, index=False, header=False)
+    print("Test dataset saved to", args.test_data)
 
     scaler = min_max_scaler()
     scaler.set(X_train, Y_train)
@@ -46,9 +48,9 @@ def main():
 
     history = model.train(X_train_scaled, Y_train_oh, X_val_scaled, Y_val_oh, epochs=1000, learning_rate=0.4)
 
-    model.save_model(scaler, "./model/model.npy")
+    model.save_model(scaler, args.model)
 
-    # plot_history(history)
+    plot_history(history)
 
 
 if __name__ == "__main__":

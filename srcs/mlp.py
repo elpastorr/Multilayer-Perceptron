@@ -51,8 +51,9 @@ class MLP:
                     print(f"Epoch: {epoch}: Loss {loss:.3f} - Accuracy {acc:.2%}")
                     break
 
-            if epoch % 10 == 0:
-                print(f"Epoch: {epoch}: Loss {loss:.3f} - Accuracy {acc:.2%}")
+            print(f"Epoch: {epoch}: Loss {loss:.3f} - Accuracy {acc:.2%}")
+            # if epoch % 10 == 0:
+                # print(f"Epoch: {epoch}: Loss {loss:.3f} - Accuracy {acc:.2%}")
         
         return history
 

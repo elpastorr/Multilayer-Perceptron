@@ -1,19 +1,25 @@
+import argparse
 import numpy as np
 from mlp import MLP
 from load_data import load_data
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Data Parser")
+    parser.add_argument('--model', type=str, default="./model/model.npy")
+    parser.add_argument('--test_data', type=str, default="./data/test_data.csv")
+
+    args = parser.parse_args()
     try:
-        model_save = np.load("model/model.npy", allow_pickle=True).item()
+        model_save = np.load(args.model, allow_pickle=True).item()
     except:
-        print("Error: Failed to load model/model.npy")
+        print("Error: Failed to load", args.model)
         return
     
     try:
-        raw = load_data("data/test_data.csv")
+        raw = load_data(args.test_data)
     except:
-        print("Error: Failed to load data/test_data.csv")
+        print("Error: Failed to load", args.test_data)
         return
 
     label = raw[0]
