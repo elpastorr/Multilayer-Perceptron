@@ -9,9 +9,8 @@ from mlp import MLP
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Data Parser")
+    parser = argparse.ArgumentParser(description="Train Args Parser")
     parser.add_argument('--dataset', type=str, required=True)
-    parser.add_argument('--model', type=str, default="./model/model.npy")
     parser.add_argument('--test_data', type=str, default="./data/test_data.csv")
 
     args = parser.parse_args()
@@ -48,7 +47,7 @@ def main():
 
     history = model.train(X_train_scaled, Y_train_oh, X_val_scaled, Y_val_oh, epochs=1000, learning_rate=0.4)
 
-    model.save_model(scaler, args.model)
+    model.save_model(scaler, "./model/model.npy")
 
     plot_history(history)
 

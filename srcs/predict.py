@@ -5,7 +5,7 @@ from load_data import load_data
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Data Parser")
+    parser = argparse.ArgumentParser(description="Predict Args Parser")
     parser.add_argument('--model', type=str, default="./model/model.npy")
     parser.add_argument('--test_data', type=str, default="./data/test_data.csv")
 
