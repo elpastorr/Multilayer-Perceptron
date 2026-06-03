@@ -25,8 +25,11 @@ def main():
     label = raw[0]
 
     y_one_hot = np.column_stack((label == 'B', label == 'M')).astype(int)
-    data = raw.loc[:, 1:].to_numpy().astype(float)
-
+    try:
+        data = raw.loc[:, 1:].to_numpy().astype(float)
+    except:
+        print("Error: Failed to read", args.test_data)
+        return
     model = MLP(input_dim=30, hidden_dim=24, output_dim=2)
 
     for i, layer in enumerate(model.layers):
