@@ -4,14 +4,23 @@ from layer import DenseLayer
 
 
 class MLP:
-    def __init__(self, input_dim=30, hidden_dim=24, output_dim=2, batch_size=8):
+    def __init__(self, input_dim=30, hidden_dim=24, output_dim=2, batch_size=8, layer=2):
         self.batch_size = batch_size
 
-        self.layers = [
-            DenseLayer(input_dim, hidden_dim),
-            DenseLayer(hidden_dim, hidden_dim),
-            DenseLayer(hidden_dim, output_dim)
-        ]
+        if layer < 4:
+            print("Error: layers number to low, minimum is 4")
+            exit()
+        elif layer > 10:
+            print("Error: layers number to high, maximum is 10")
+            exit()
+        else:
+            if layer != 4:
+                print('\033[91m' + "I recommand to enter 4 layer.\nYou are using more than 2 hidden layer, this project is realised to work with 2 but for correction purpose i added this option" + '\033[0m')
+            self.layers = [DenseLayer(input_dim, hidden_dim)]
+            for _i in range(layer - 2):
+                self.layers.append(DenseLayer(hidden_dim, hidden_dim))
+            self.layers.append(DenseLayer(hidden_dim, output_dim))
+
 
     def train(self, X_train, Y_train, X_val, Y_val, epochs, learning_rate, break_count=2, min_delta=0.0001):
         self.batch_size= X_train.shape[0]
