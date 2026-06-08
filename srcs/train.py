@@ -12,7 +12,7 @@ def main():
     parser = argparse.ArgumentParser(description="Train Args Parser")
     parser.add_argument('--dataset', type=str, required=True)
     parser.add_argument('--test_data', type=str, default="./data/test_data.csv")
-    parser.add_argument('--layer', type=int, default=4)
+    parser.add_argument('--hidlayer', type=int, default=2)
 
     args = parser.parse_args()
     try:
@@ -44,7 +44,7 @@ def main():
 
     Y_val_oh = np.column_stack((Y_validation == 'B', Y_validation == 'M')).astype(int)
 
-    model = MLP(input_dim=30, hidden_dim=24, output_dim=2, batch_size=len(X_train_scaled), layer=args.layer)
+    model = MLP(input_dim=30, hidden_dim=24, output_dim=2, batch_size=len(X_train_scaled), hidlayer=args.hidlayer)
 
     history = model.train(X_train_scaled, Y_train_oh, X_val_scaled, Y_val_oh, epochs=1000, learning_rate=0.4)
 

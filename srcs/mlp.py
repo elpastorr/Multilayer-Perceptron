@@ -4,20 +4,20 @@ from layer import DenseLayer
 
 
 class MLP:
-    def __init__(self, input_dim=30, hidden_dim=24, output_dim=2, batch_size=8, layer=2):
+    def __init__(self, input_dim=30, hidden_dim=24, output_dim=2, batch_size=8, hidlayer=2):
         self.batch_size = batch_size
 
-        if layer < 4:
-            print("Error: layers number to low, minimum is 4")
+        if hidlayer < 1:
+            print("Error: hidden layers number to low, minimum is 1")
             exit()
-        elif layer > 10:
-            print("Error: layers number to high, maximum is 10")
+        elif hidlayer > 5:
+            print("Error: hidden layers number to high, maximum is 5")
             exit()
         else:
-            if layer != 4:
-                print('\033[91m' + "I recommand to enter 4 layer.\nYou are using more than 2 hidden layer, this project is realised to work with 2 but for correction purpose i added this option" + '\033[0m')
+            if hidlayer != 2:
+                print('\033[91m' + "I recommand to enter 2 hidden layers.\nThis project is realised to work with 2 but for correction purpose i added this option" + '\033[0m')
             self.layers = [DenseLayer(input_dim, hidden_dim)]
-            for _i in range(layer - 2):
+            for _i in range(hidlayer - 1):
                 self.layers.append(DenseLayer(hidden_dim, hidden_dim))
             self.layers.append(DenseLayer(hidden_dim, output_dim))
 
