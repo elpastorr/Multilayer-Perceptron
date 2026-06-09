@@ -15,7 +15,7 @@ class DenseLayer:
         self.input = inputs
         self.z = np.dot(inputs, self.weights) + self.biases
         return self.z
-    
+
     def update(self, dw, db, learning_rate):
         self.weights -= learning_rate * dw
         self.biases -= learning_rate * db

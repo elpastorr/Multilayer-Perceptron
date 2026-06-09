@@ -15,7 +15,7 @@ class MLP:
             exit()
         else:
             if hidlayer != 2:
-                print('\033[91m' + "I recommand to enter 2 hidden layers.\nThis project is realised to work with 2 but for correction purpose i added this option" + '\033[0m')
+                print('\033[91m' + "I recommand to enter 2 hidden layers.\nThe dimension of the neurons are set to work with 2 but for correction purpose i added this option" + '\033[0m')
             self.layers = [DenseLayer(input_dim, hidden_dim)]
             for _i in range(hidlayer - 1):
                 self.layers.append(DenseLayer(hidden_dim, hidden_dim))
@@ -110,7 +110,7 @@ class MLP:
                 input_to_layer = self.layers[i - 1].output
             else:
                 input_to_layer = X
-        
+
             dZ_hidden = dA_prev * (layer.output * (1 - layer.output))
 
             dW_hidden = (input_to_layer.T @ dZ_hidden) / self.batch_size

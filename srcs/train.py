@@ -25,7 +25,7 @@ def main():
     data = raw.loc[:, 2:]
 
     X_train, X_temp, Y_train, Y_temp = train_test_split(data, labels, stratify=labels, random_state=42, test_size=0.4)
-    
+
     X_validation, X_test, Y_validation, Y_test = train_test_split(X_temp, Y_temp, stratify=Y_temp, random_state=42, test_size=0.5)
 
     test_dataset = pd.concat([Y_test, X_test], axis=1)

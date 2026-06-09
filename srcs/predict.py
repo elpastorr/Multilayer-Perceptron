@@ -8,6 +8,7 @@ def main():
     parser = argparse.ArgumentParser(description="Predict Args Parser")
     parser.add_argument('--model', type=str, default="./model/model.npy")
     parser.add_argument('--test_data', type=str, default="./data/test_data.csv")
+    parser.add_argument('--hidlayer', type=int, default=2)
 
     args = parser.parse_args()
     try:
@@ -15,7 +16,7 @@ def main():
     except:
         print("Error: Failed to load", args.model)
         return
-    
+
     try:
         raw = load_data(args.test_data)
     except:
@@ -30,7 +31,7 @@ def main():
     except:
         print("Error: Failed to read", args.test_data)
         return
-    model = MLP(input_dim=30, hidden_dim=24, output_dim=2)
+    model = MLP(input_dim=30, hidden_dim=24, output_dim=2, hidlayer=args.hidlayer)
 
     for i, layer in enumerate(model.layers):
         layer.weights = model_save["layers"][i]["w"]
